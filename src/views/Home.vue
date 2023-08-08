@@ -1,11 +1,7 @@
 
 <template>
   <div>
-    Search a movie <br />
-    <form :action="`/movieSearch/${searchQuery}&1`">
-      <input type="text" v-model="searchQuery" />
-      <input type="submit" />
-    </form>
+    Welcome!
   </div>
 </template>
 

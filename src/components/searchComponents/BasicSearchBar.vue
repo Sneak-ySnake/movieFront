@@ -1,6 +1,6 @@
 
 <template>
-    <div>
+    <div class="header">
         Search a movie <br />
         <form :action="`/movieSearch/${searchQuery}&1`">
             <input type="text" v-model="searchQuery" />
@@ -20,4 +20,8 @@ export default {
 
 </script>
   
-<style></style>  
+<style lang="less">
+.header {
+    background-color: rgb(72, 72, 188);
+}
+</style>  
