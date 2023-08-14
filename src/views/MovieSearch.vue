@@ -12,8 +12,9 @@
         </span>
     </div>
     <div>
-        <span v-for="i in  totalPage ">
-            <a :href="`/movieSearch/${this.searchQuery}&${i}`">{{ i }}</a>
+        <span class="pagesSelection" v-for="i in  totalPage">
+            <a v-if="i === currentPage" class="selectedPage" :href="`/movieSearch/${this.searchQuery}&${i}`">{{ i }}</a>
+            <a v-else :href="`/movieSearch/${this.searchQuery}&${i}`">{{ i }}</a>
         </span>
     </div>
 </template>
@@ -53,3 +54,15 @@ export default {
 }
 
 </script>
+
+<style lang="less">
+.selectedPage {
+    font-weight: bold;
+    background-color: lightgray;
+    border-radius: 25%;
+}
+
+.pagesSelection {
+    margin: 2px;
+}
+</style>
