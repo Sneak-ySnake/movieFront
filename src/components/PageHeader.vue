@@ -6,3 +6,4 @@ import BasicSearchBar from './searchComponents/BasicSearchBar.vue';
 <template>
     <BasicSearchBar />
 </template>
+

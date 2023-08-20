@@ -4,11 +4,21 @@ import PageHeader from './components/PageHeader.vue';
 </script>
 
 <template>
-  <header>
+  <header class="bar">
     <PageHeader />
   </header>
-  <br />
-  <RouterView />
+
+  <body class="page">
+    <RouterView />
+  </body>
 </template>
 
-<style></style>
+<style lang="less">
+.page {
+  margin-top: 100px;
+}
+
+.bar {
+  position: fixed;
+}
+</style>

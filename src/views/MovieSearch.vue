@@ -1,18 +1,18 @@
 <template>
-    <div>
-        Results for: {{ searchQuery }} <br />
-        Total page: {{ totalPage }} <br />
-        Current page: {{ currentPage }} <br />
-        Results: {{ totalResults }} <br />
+    <!-- <InfoBlocks :searchQuery="searchQuery" :totalPage="totalPage" :currentPage="currentPage" :totalResults="totalResults" /> -->
+    <div class="infoBlock">
+        <span class="infoText">Results for:</span> {{ searchQuery }}
+        <span class="infoText">Total page:</span> {{ totalPage }}
+        <span class="infoText">Current page:</span> {{ currentPage }}
+        <span class="infoText">Results:</span> {{ totalResults }}
     </div>
-    <br /><br />
-    <div>
+    <div class="searchResult">
         <span v-for="result in searchResult">
             Title: <a :href="`/movie/${result.id}`">{{ result.original_title }}</a> <br />
         </span>
     </div>
-    <div>
-        <span class="pagesSelection" v-for="i in  totalPage">
+    <div class="numberList">
+        <span class="pagesSelection" v-for="i in totalPage">
             <a v-if="i === currentPage" class="selectedPage" :href="`/movieSearch/${this.searchQuery}&${i}`">{{ i }}</a>
             <a v-else :href="`/movieSearch/${this.searchQuery}&${i}`">{{ i }}</a>
         </span>
@@ -20,14 +20,14 @@
 </template>
 
 <script>
-
 import axios from 'axios';
-import MovieDBConstants from '../constants/MovieDBConstants.js'
+import MovieDBConstants from '../constants/MovieDBConstants.js';
+import InfoBlocks from '../components/searchResultComponents/InfoBlock.vue';
 
 export default {
     props: {
         searchQuery: String,
-        pageNumber: Number
+        pageNumber: String
     },
     data() {
         return {
@@ -56,13 +56,35 @@ export default {
 </script>
 
 <style lang="less">
+.numberList {
+    margin: 25px;
+}
+
 .selectedPage {
+    padding: 2px;
+    margin: 1px;
     font-weight: bold;
     background-color: lightgray;
-    border-radius: 25%;
+    border-radius: 5px;
 }
 
 .pagesSelection {
     margin: 2px;
+}
+
+.infoText {
+    font-weight: bold;
+    color: white;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.infoBlock {
+    margin: 5px;
+    width: 200px;
+}
+
+.searchResult {
+    width: 800px;
 }
 </style>
