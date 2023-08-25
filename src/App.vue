@@ -15,10 +15,12 @@ import PageHeader from './components/PageHeader.vue';
 
 <style lang="less">
 .page {
-  margin-top: 100px;
+  //margin-top: 100px;
 }
 
 .bar {
-  position: fixed;
+  //position: fixed;
+  width: 600px;
+  height: 10%;
 }
 </style>
