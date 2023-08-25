@@ -1,11 +1,6 @@
 <template>
-    <!-- <InfoBlocks :searchQuery="searchQuery" :totalPage="totalPage" :currentPage="currentPage" :totalResults="totalResults" /> -->
-    <div class="infoBlock">
-        <span class="infoText">Results for:</span> {{ searchQuery }}
-        <span class="infoText">Total page:</span> {{ totalPage }}
-        <span class="infoText">Current page:</span> {{ currentPage }}
-        <span class="infoText">Results:</span> {{ totalResults }}
-    </div>
+    <InfoBlock :searchQuery="searchQuery" :totalPage="totalPage" :currentPage="currentPage" :totalResults="totalResults" />
+
     <div class="searchResult">
         <span v-for="result in searchResult">
             Title: <a :href="`/movie/${result.id}`">{{ result.original_title }}</a> <br />
@@ -22,7 +17,7 @@
 <script>
 import axios from 'axios';
 import MovieDBConstants from '../constants/MovieDBConstants.js';
-import InfoBlocks from '../components/searchResultComponents/InfoBlock.vue';
+import InfoBlock from '../components/searchResultComponents/InfoBlock.vue';
 
 export default {
     props: {
@@ -35,13 +30,11 @@ export default {
             totalPage: null,
             currentPage: null,
             totalResults: null
-        }
+        };
     },
     methods: {
         async getSearchResults() {
-            const response
-                = await axios.get(`${MovieDBConstants.API_URL_MOVIE_SEARCH}${MovieDBConstants.API_KEY_PARAM}&query=${this.searchQuery}&page=${this.pageNumber}`);
-
+            const response = await axios.get(`${MovieDBConstants.API_URL_MOVIE_SEARCH}${MovieDBConstants.API_KEY_PARAM}&query=${this.searchQuery}&page=${this.pageNumber}`);
             this.searchResult = response.data.results;
             this.totalPage = response.data.total_pages;
             this.currentPage = response.data.page;
@@ -50,7 +43,8 @@ export default {
     },
     mounted() {
         this.getSearchResults();
-    }
+    },
+    components: { InfoBlock }
 }
 
 </script>
